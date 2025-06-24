@@ -1,0 +1,35 @@
+**Brute force**
+use a set
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        set<int> s;
+        for(int val:nums)
+            s.insert(val);
+        int k=s.size();
+        int i=0;
+        for(int val:s)
+            nums[i++]=val;
+        return k;
+    }
+};
+Time complexity: O(n logn)
+Space complexity: O(n)
+
+**Optimal Solution**
+using 2 pointers
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int L=1;
+        for(int R=1;R<nums.size();R++){
+            if(nums[R-1]!=nums[R]){
+                nums[L]=nums[R];
+                L++;
+            }
+        }
+        return L;
+    }
+};
+Time complexity: O(n)
+Space complexity: O(1)
