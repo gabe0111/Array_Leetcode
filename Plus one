@@ -1,0 +1,45 @@
+#include <algorithm>
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        int t=digits.size();
+        if(digits.empty()){
+            digits.push_back(1);
+            return digits;
+        }
+        //if last dig is less than 9
+        if(digits[t-1]<9){
+            digits[t-1]++;
+        }
+        //last digit is equal to 9
+        else{
+            //incrementing the last digit
+            digits[t-1]=0;
+            //now deal with the carry
+            //if its a single element array
+            if(t==1){
+               digits.insert(digits.begin(), 1);
+            }
+            //not a single element array
+            else{
+                for(int i=t-2;i>=0;i--){
+                    //digit bef it is 9
+                    if(digits[i]==9){
+                        digits[i]=0;
+                    }
+                    else{
+                        digits[i]++;
+                        break;
+                    }
+                }
+                if(digits[0]==0){
+                    digits.insert(digits.begin(), 1);
+                }
+            }
+        }
+        return digits;
+    }
+};
+
+Time complexity: O(n)
+Space complexity: O(1)
